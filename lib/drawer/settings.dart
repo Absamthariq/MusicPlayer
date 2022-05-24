@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+
+class Settings extends StatelessWidget {
+  const Settings({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF09131F),
+        title: const Text('SETTINGS'),
+      ),
+      body: Column(
+        children: [
+          InkWell(
+            child: const ListTile(
+              leading: Icon(
+                Icons.share,
+                color: Colors.white,
+              ),
+              title: Text('Share this App'),
+            ),
+            onTap: () {},
+          ),
+          InkWell(
+            child: ListTile(
+              leading: const Icon(Icons.translate,color: Colors.white,),
+              title: const Text('Change Language'),
+              onTap: () {},
+            ),
+          ),
+          InkWell(
+            child: const ListTile(
+             leading: Icon(
+                Icons.event_note_outlined,
+                color: Colors.white,
+              ),
+              title: Text('Terms and Conditions'),
+            ),
+            onTap: () {},
+          ),
+          InkWell(
+            child: const ListTile(
+             leading: Icon(
+                Icons.star,
+                color: Colors.white,
+              ),
+              title:  Text('Rate Us'),
+            ),
+            onTap: () {},
+          ),
+          InkWell(
+            child: const ListTile(
+              leading: Icon(
+                Icons.info,
+                color: Colors.white,
+              ),
+              title:  Text('About Us'),
+            ),
+            onTap: () {},
+          ),
+          const Spacer(),
+          const Text(
+            'version',
+            style:  TextStyle(color: Colors.grey),
+          ),
+          const Text(
+            '0.69',
+            style: TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          )
+        ],
+      ),
+    );
+  }
+}

@@ -1,0 +1,22 @@
+ Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              width: 250,
+              height: 250,
+              color: Colors.amber,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'lib/assets/song_images/Astroworld_by_Travis_Scott.jpg',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ), //Container
+            Container(
+              height: 85,
+              width: 250,
+              color: Colors.black.withOpacity(.55),
+            ),
+          ],
+        ),

@@ -1,0 +1,76 @@
+ IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.shuffle),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        CupertinoIcons.backward_end,
+                        size: 40,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 45, 50),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.pause_circle,
+                        size: 80,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        CupertinoIcons.forward_end,
+                        size: 40,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.repeat),
+                  ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  Container(
+                    color: Colors.black,
+                    width: 82,
+                    height:  MediaQuery.of(context).size.height,
+                  ),
+                  Container(
+                    color: Colors.black,
+                    width: 82,
+                    height:  MediaQuery.of(context).size.height,
+                  ),
+                  Container(
+                    color: Colors.black,
+                    width: 82,
+                    height:  MediaQuery.of(context).size.height,
+                  ),
+                  Container(
+                    color: Colors.black,
+                    width: 82,
+                    height:  MediaQuery.of(context).size.height,
+                  ),
+                  Container(
+                    color: Colors.black,
+                    width: 83.3,
+                    height:  MediaQuery.of(context).size.height,
+                  ),
