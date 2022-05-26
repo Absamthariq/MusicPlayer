@@ -11,7 +11,7 @@ import '../tracks_music_list/track_lists.dart';
 
 class NowPlayer extends StatefulWidget {
   // final PaletteGenerator? palette;
-  NowPlayer({
+  const NowPlayer({
     Key? key,
   }) : super(key: key);
 
@@ -114,7 +114,6 @@ class _NowPlayerState extends State<NowPlayer>
               ],
             ),
             body:
-                // final myAudio = find(songDetails, playing.audio.assetAudioPath);
                 Column(
               children: [
                 Container(

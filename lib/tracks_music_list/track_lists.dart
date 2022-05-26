@@ -108,20 +108,6 @@ class _TrackListsState extends State<TrackLists> {
       ),
     );
 
-//      ListView.builder(
-//       itemCount: player.playlist!.audios.length,
-//       itemBuilder: (BuildContext context, int index) {
-//         return GestureDetector(
-//           onTap: () {
-//             songsArray(index, player.playlist!.audios);
-//           },
-//           child: Listitems(
-//             index: index,
-//           ),
-//         );
-//       },
-//     );
-//   }
   }
 }
 

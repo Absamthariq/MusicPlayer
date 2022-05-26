@@ -7,6 +7,7 @@ import 'package:neon_player/drawer.dart';
 import 'package:neon_player/favorists/favourists.dart';
 import 'package:neon_player/Miniplayer/miniplayer2.dart';
 import 'package:neon_player/playlist/playlists.dart';
+import 'package:neon_player/tracks_music_list/search.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
 
 // Audio find(List<Audio> source, String fromPath) {
@@ -27,7 +28,9 @@ class TabNavigation extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showSearch(context: context, delegate: SearchScreen());
+              },
               icon: const Icon(Icons.search),
             ),
             IconButton(

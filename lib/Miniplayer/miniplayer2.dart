@@ -100,7 +100,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                                 ),
                         ),
                         // play pause
-                        PlayerBuilder.isPlaying(
+                        PlayerBuilder.isPlaying( 
                           player: player,
                           builder: (context, isPlaying) {
                             return IconButton(
