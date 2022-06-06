@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neon_player/now_playing/now_player.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
@@ -26,8 +25,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
     return Container(
       child: player.builderCurrent(
         builder: ((context, playing) {
-          final myAudio = find(songDetails, playing.audio.assetAudioPath);
-          String songid = myAudio.metas.id!;
+          String songid = playing.audio.audio.metas.id!;
 
           return FutureBuilder<PaletteGenerator?>(
               future: updatePaletteGenerator(songid),
@@ -56,7 +54,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                     },
                     tileColor: bgColor,
                     leading: QueryArtworkWidget(
-                      id: int.parse(myAudio.metas.id!),
+                      id: int.parse(songid),
                       type: ArtworkType.AUDIO,
                       nullArtworkWidget: ClipRRect(
                         child: Image.asset(
@@ -68,7 +66,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                     title: SizedBox(
                       height: 18,
                       child: Text(
-                        myAudio.metas.title.toString(),
+                        player.getCurrentAudioTitle,
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

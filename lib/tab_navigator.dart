@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neon_player/albums_list/album_list.dart';
 import 'package:neon_player/artist_list/artist_lists.dart';
-import 'package:neon_player/drawer.dart';
+import 'package:neon_player/drawer/drawer.dart';
 import 'package:neon_player/favorists/favourists.dart';
 import 'package:neon_player/Miniplayer/miniplayer2.dart';
 import 'package:neon_player/playlist/playlists.dart';

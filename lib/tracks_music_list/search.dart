@@ -8,13 +8,12 @@ import 'package:neon_player/tracks_music_list/openPlayer.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-class SearchScreen extends SearchDelegate{
-
-List<String> allData =[''];
+class SearchScreen extends SearchDelegate {
+  List<String> allData = [''];
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-   return [
+    return [
       IconButton(
         color: Colors.grey,
         onPressed: () {
@@ -35,7 +34,7 @@ List<String> allData =[''];
     return theme.copyWith(
       hintColor: Colors.grey,
       appBarTheme: const AppBarTheme(
-        color: Color.fromARGB(255, 221, 255, 252),
+        color: Color(0xFF181717),
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
           const InputDecorationTheme(
@@ -69,26 +68,24 @@ List<String> allData =[''];
       ),
     );
   }
+
   @override
   Widget buildSuggestions(BuildContext context) {
     final searchSongItem = query.isEmpty
         ? songDetails
         : songDetails
-                .where(
-                  (element) => element.metas.title!.toLowerCase().contains(
-                        query.toLowerCase().toString(),
-                      ),
-                )
+                .where((element) => element.metas.title!.toLowerCase().contains(
+                      query.toLowerCase().toString(),
+                    ))
                 .toList() +
             songDetails
                 .where(
-                  (element) => element.metas.artist!.toLowerCase().contains(
-                        query.toLowerCase().toString(),
-                      ),
-                )
+                    (element) => element.metas.artist!.toLowerCase().contains(
+                          query.toLowerCase().toString(),
+                        ))
                 .toList();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 221, 255, 252),
+      backgroundColor: const Color(0xFF181717),
       body: searchSongItem.isEmpty
           ? Center(
               child: Text(
@@ -102,39 +99,47 @@ List<String> allData =[''];
               ),
             )
           : ListView.builder(
-            itemBuilder: (context, index) =>  ListTile(
-                        onTap: (() async {
-                          await OpenPlayer(
-                            fullSongs: [],
-                            index: index,
-                          ).openAssetPlayer(
-                            index: index,
-                            songs: searchSongItem,
-                          );
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: ((context) => const NowPlayer()),
-                            ),
-                          );
-                        }),
-              leading: QueryArtworkWidget(
-                id: int.parse(searchSongItem[index].metas.id!),
-                type: ArtworkType.AUDIO,
-                nullArtworkWidget: ClipRRect(
-                   borderRadius: BorderRadius.circular(30),
-                  child: Image.asset(
-                    'lib/assets/song_images/the-machine-dances-logo-stock-.jpg',
-                    fit: BoxFit.cover,
+              itemBuilder: (context, index) => ListTile(
+                onTap: (() async {
+                  await OpenPlayer(
+                    fullSongs: [],
+                    index: index,
+                  ).openAssetPlayer(
+                    index: index,
+                    songs: searchSongItem,
+                  );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const NowPlayer()),
+                    ),
+                  );
+                }),
+                leading: QueryArtworkWidget(
+                  id: int.parse(searchSongItem[index].metas.id!),
+                  type: ArtworkType.AUDIO,
+                  nullArtworkWidget: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.asset(
+                      'lib/assets/song_images/the-machine-dances-logo-stock-.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
+                title: Text(
+                  searchSongItem[index].metas.title!,
+                  style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+                subtitle: Text(
+                  searchSongItem[index].metas.artist!,
+                  style: const TextStyle(
+                      fontSize: 13, height: 2, color: Colors.grey),
+                ),
               ),
-              title: Text( searchSongItem[index].metas.title!,style: const TextStyle(
-                fontSize: 15, fontWeight: FontWeight.w500, color: Colors.white)),
-              subtitle: Text(searchSongItem[index].metas.artist!,style: const TextStyle(fontSize: 13, height: 2, color: Colors.grey)),
+              itemCount: searchSongItem.length,
             ),
-            itemCount: searchSongItem.length,
-          )
     );
   }
-  
 }

@@ -4,7 +4,9 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neon_player/db/songmodel.dart';
 import 'package:neon_player/now_playing/progress_bar.dart';
+import 'package:neon_player/playlist/refactored/btmsht_add.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:palette_generator/palette_generator.dart';
 import '../tracks_music_list/track_lists.dart';
@@ -13,6 +15,7 @@ class NowPlayer extends StatefulWidget {
   // final PaletteGenerator? palette;
   const NowPlayer({
     Key? key,
+    
   }) : super(key: key);
 
   @override
@@ -31,9 +34,10 @@ class _NowPlayerState extends State<NowPlayer>
   @override
   Widget build(BuildContext context) {
     return assetsAudioPlayer.builderCurrent(builder: (context, playing) {
-      final myAudio = find(songDetails, playing.audio.assetAudioPath);
+   
 
-      String songid = myAudio.metas.id!;
+
+      String songid = playing.audio.audio.metas.id!;
 
       return FutureBuilder<PaletteGenerator?>(
         future: generatePalette(songid),
@@ -88,7 +92,7 @@ class _NowPlayerState extends State<NowPlayer>
                         fontSize: 10),
                   ),
                   Text(
-                    myAudio.metas.album!.toUpperCase(),
+                  player.getCurrentAudioAlbum.toUpperCase(),
                     style: GoogleFonts.inter(
                         color: textColor,
                         fontWeight: FontWeight.bold,
@@ -105,7 +109,9 @@ class _NowPlayerState extends State<NowPlayer>
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                   icon: const Icon(
                     Icons.playlist_add,
                     color: Color(0xFFE9572F),
@@ -294,5 +300,10 @@ class _NowPlayerState extends State<NowPlayer>
         await PaletteGenerator.fromImageProvider(MemoryImage(imagebyte!),
             size: const Size(300, 150), maximumColorCount: 30);
     return paletteGenerator;
+  }
+   Songs databaseSongs(List<Songs> songs, String id) {
+    return songs.firstWhere(
+      (element) => element.songurl.toString().contains(id.toString()),
+    );
   }
 }

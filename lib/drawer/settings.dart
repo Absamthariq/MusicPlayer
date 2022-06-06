@@ -57,7 +57,9 @@ class Settings extends StatelessWidget {
               ),
               title:  Text('About Us'),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const LicencePageSimple(),),);
+            },
           ),
           const Spacer(),
           const Text(
@@ -79,3 +81,19 @@ class Settings extends StatelessWidget {
     );
   }
 }
+
+class LicencePageSimple extends StatelessWidget {
+  const LicencePageSimple({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData.dark(),
+      child: const LicensePage(
+        applicationName: 'Neon player',
+        applicationVersion: '0.69',
+      ),
+    );
+  }
+}
+
