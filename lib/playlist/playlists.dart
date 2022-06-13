@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:neon_player/playlist/refactored/create_playlist.dart';
-import 'package:neon_player/playlist/refactored/rename_playlist.dart';
 import 'package:neon_player/playlist/songs_in_playlists.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
 import 'package:on_audio_room/on_audio_room.dart';
@@ -73,7 +71,7 @@ class _PlaylistsState extends State<Playlists> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 230,
                               height: 100,
                               child: Column(

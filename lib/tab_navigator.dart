@@ -10,10 +10,6 @@ import 'package:neon_player/playlist/playlists.dart';
 import 'package:neon_player/tracks_music_list/search.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
 
-// Audio find(List<Audio> source, String fromPath) {
-//   return source.firstWhere((element) => element.path == fromPath);
-// }
-
 class TabNavigation extends StatelessWidget {
   const TabNavigation({Key? key}) : super(key: key);
 
@@ -33,10 +29,6 @@ class TabNavigation extends StatelessWidget {
               },
               icon: const Icon(Icons.search),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert),
-            )
           ],
           bottom: const TabBar(
             isScrollable: true,

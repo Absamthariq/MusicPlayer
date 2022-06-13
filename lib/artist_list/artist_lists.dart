@@ -15,20 +15,20 @@ List<ArtistModel> allArtists = [];
 class _ArtistListsState extends State<ArtistLists> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: 160,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 0,
-          mainAxisSpacing: 0,
-          childAspectRatio: 19 / 25),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: FutureBuilder<List<ArtistModel>>(
-            future: audioQuery.queryArtists(),
-            builder: (context, item) {
-              return Card(
+    return FutureBuilder<List<ArtistModel>>(
+      future: audioQuery.queryArtists(),
+      builder: (context, item) {
+        return GridView.builder(
+          itemCount: item.data!.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 0,
+              mainAxisSpacing: 0,
+              childAspectRatio: 19 / 25),
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -99,9 +99,9 @@ class _ArtistListsState extends State<ArtistLists> {
                     )
                   ],
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         );
       },
     );

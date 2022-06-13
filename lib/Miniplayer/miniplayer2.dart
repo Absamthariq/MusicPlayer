@@ -48,7 +48,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NowPlayer(),
+                          builder: (context) => const NowPlayer(),
                         ),
                       );
                     },
@@ -67,12 +67,12 @@ class _Miniplayer2State extends State<Miniplayer2> {
                       height: 18,
                       child: Text(
                         player.getCurrentAudioTitle,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                     subtitle: Text(
                       player.getCurrentAudioArtist.toUpperCase(),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       overflow: TextOverflow.ellipsis,
                     ),
                     trailing: Wrap(

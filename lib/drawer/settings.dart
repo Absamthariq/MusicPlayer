@@ -24,14 +24,17 @@ class Settings extends StatelessWidget {
           ),
           InkWell(
             child: ListTile(
-              leading: const Icon(Icons.translate,color: Colors.white,),
+              leading: const Icon(
+                Icons.translate,
+                color: Colors.white,
+              ),
               title: const Text('Change Language'),
               onTap: () {},
             ),
           ),
           InkWell(
             child: const ListTile(
-             leading: Icon(
+              leading: Icon(
                 Icons.event_note_outlined,
                 color: Colors.white,
               ),
@@ -41,11 +44,11 @@ class Settings extends StatelessWidget {
           ),
           InkWell(
             child: const ListTile(
-             leading: Icon(
+              leading: Icon(
                 Icons.star,
                 color: Colors.white,
               ),
-              title:  Text('Rate Us'),
+              title: Text('Rate Us'),
             ),
             onTap: () {},
           ),
@@ -55,16 +58,21 @@ class Settings extends StatelessWidget {
                 Icons.info,
                 color: Colors.white,
               ),
-              title:  Text('About Us'),
+              title: Text('About Us'),
             ),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const LicencePageSimple(),),);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LicencePageSimple(),
+                ),
+              );
             },
           ),
           const Spacer(),
           const Text(
             'version',
-            style:  TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.grey),
           ),
           const Text(
             '0.69',
@@ -83,7 +91,7 @@ class Settings extends StatelessWidget {
 }
 
 class LicencePageSimple extends StatelessWidget {
-  const LicencePageSimple({ Key? key }) : super(key: key);
+  const LicencePageSimple({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +99,9 @@ class LicencePageSimple extends StatelessWidget {
       data: ThemeData.dark(),
       child: const LicensePage(
         applicationName: 'Neon player',
-        applicationVersion: '0.69',
+        applicationVersion: "Version 1.0.0\n\nCopyright © 2022-2023",
+        applicationLegalese: "Developed by Absam Thariq Hassan",
       ),
     );
   }
 }
-

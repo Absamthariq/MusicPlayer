@@ -110,7 +110,7 @@ class SearchScreen extends SearchDelegate {
                   );
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const NowPlayer()),
+                      builder: ((context) =>  const NowPlayer()),
                     ),
                   );
                 }),

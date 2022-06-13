@@ -53,7 +53,7 @@ class _SelectSongsToPlaylistState extends State<SelectSongsToPlaylist> {
                         backgroundColor: Colors.green,
                         content: Text(
                           'Song Added to Playlist',
-                          style: GoogleFonts.dmSans(color: Colors.white),
+                          style: GoogleFonts.inter(color: Colors.white),
                         ),
                       ),
                     );

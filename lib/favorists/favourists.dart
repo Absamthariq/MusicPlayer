@@ -94,7 +94,7 @@ class _FavouritesState extends State<Favourites> {
                       },
                       icon: const Icon(
                         Icons.favorite,
-                        color: Colors.greenAccent,
+                        color: Colors.green,
                       )),
                 );
               },

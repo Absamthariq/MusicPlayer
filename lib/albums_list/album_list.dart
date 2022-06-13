@@ -16,16 +16,18 @@ List<AlbumModel> allAlbums = [];
 class _AlbumPageState extends State<AlbumPage> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount:  300,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 0, childAspectRatio: 4 / 4),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(4),
-          child: FutureBuilder<List<AlbumModel>>(
-              future: audioQuery.queryAlbums(),
-              builder: (context, item) {
+    return FutureBuilder<List<AlbumModel>>(
+        future: audioQuery.queryAlbums(),
+        builder: (context, item) {
+          return Padding(
+            padding: const EdgeInsets.all(4),
+            child: GridView.builder(
+              itemCount: item.data!.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 0,
+                  childAspectRatio: 4 / 4),
+              itemBuilder: (context, index) {
                 if (item.data == null) {
                   return const Center(
                     child: CircularProgressIndicator(),
@@ -111,9 +113,9 @@ class _AlbumPageState extends State<AlbumPage> {
                     ],
                   ),
                 );
-              }),
-        );
-      },
-    );
+              },
+            ),
+          );
+        });
   }
 }

@@ -1,12 +1,9 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:neon_player/Miniplayer/miniplayer2.dart';
 import 'package:neon_player/db/songmodel.dart';
-import 'package:neon_player/now_playing/now_player.dart';
 import 'package:neon_player/playlist/show_addable_music.dart';
-import 'package:neon_player/tracks_music_list/openPlayer.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_room/on_audio_room.dart';
