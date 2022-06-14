@@ -8,6 +8,7 @@ class DrawerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.black,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -16,7 +17,7 @@ class DrawerList extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   image: DecorationImage(
-                      image: AssetImage('lib/assets/song_images/wave.jpg'),
+                      image: AssetImage('lib/assets/song_images/logo2.jpg'),
                       fit: BoxFit.cover),
                 ),
               ),

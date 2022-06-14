@@ -58,7 +58,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                       type: ArtworkType.AUDIO,
                       nullArtworkWidget: ClipRRect(
                         child: Image.asset(
-                          'lib/assets/song_images/wave.jpg',
+                          'lib/assets/song_images/the-machine-dances-logo-stock-.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -98,7 +98,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                                 ),
                         ),
                         // play pause
-                        PlayerBuilder.isPlaying( 
+                        PlayerBuilder.isPlaying(
                           player: player,
                           builder: (context, isPlaying) {
                             return IconButton(
@@ -139,13 +139,14 @@ class _Miniplayer2State extends State<Miniplayer2> {
   }
 
   Future<PaletteGenerator?> updatePaletteGenerator(String songid) async {
-     Uint8List? imagebyte = await audioQuery.queryArtwork(
-        int.parse(songid), 
-        ArtworkType.AUDIO, 
-        
-      );
-    paletteGenerator = await PaletteGenerator.fromImageProvider(MemoryImage(imagebyte!),
-            size: const Size(300, 150), maximumColorCount: 30);
+    Uint8List? imagebyte = await audioQuery.queryArtwork(
+      int.parse(songid),
+      ArtworkType.AUDIO,
+    );
+    paletteGenerator = await PaletteGenerator.fromImageProvider(
+        MemoryImage(imagebyte!),
+        size: const Size(300, 150),
+        maximumColorCount: 30);
     return paletteGenerator;
   }
 }

@@ -97,8 +97,10 @@ class LicencePageSimple extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData.dark(),
-      child: const LicensePage(
-        applicationName: 'Neon player',
+      child: LicensePage(
+        
+        applicationIcon: Image.asset('lib/assets/song_images/logo2.jpg'),
+        applicationName: 'NeoX player',
         applicationVersion: "Version 1.0.0\n\nCopyright © 2022-2023",
         applicationLegalese: "Developed by Absam Thariq Hassan",
       ),

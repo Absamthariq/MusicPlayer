@@ -22,8 +22,8 @@ class _FavouritesState extends State<Favourites> {
       child: FutureBuilder<List<FavoritesEntity>>(
           future: audioRoom.queryFavorites(
             limit: 50,
-            reverse: false,
-            sortType: null,
+            reverse: true,
+           
           ),
           builder: (context, item) {
             if (item.data == null || item.data!.isEmpty) {
@@ -33,7 +33,7 @@ class _FavouritesState extends State<Favourites> {
               );
             }
             List<FavoritesEntity> favorites = item.data!;
-              List<Audio> favoritesSongs = [];
+            List<Audio> favoritesSongs = [];
 
             for (var songs in favorites) {
               favoritesSongs.add(
@@ -53,13 +53,14 @@ class _FavouritesState extends State<Favourites> {
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   onTap: () async {
-                      await player.open(
-                          Playlist(audios: favoritesSongs, startIndex: index),
-                          showNotification: true,
-                          loopMode: LoopMode.playlist,
-                          notificationSettings:
-                              const NotificationSettings(stopEnabled: false));
-                    },
+                    await player.open(
+                      Playlist(audios: favoritesSongs, startIndex: index),
+                      showNotification: true,
+                      loopMode: LoopMode.playlist,
+                      notificationSettings:
+                          const NotificationSettings(stopEnabled: false),
+                    );
+                  },
                   onLongPress: () async {
                     await RemoveFromfavorites(context, favorites, index);
                   },
@@ -94,7 +95,7 @@ class _FavouritesState extends State<Favourites> {
                       },
                       icon: const Icon(
                         Icons.favorite,
-                        color: Colors.green,
+                        color: Colors.red,
                       )),
                 );
               },
