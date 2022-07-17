@@ -3,37 +3,34 @@ import 'dart:typed_data';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neon_player/controller/music_controll_controllers.dart';
 import 'package:neon_player/db/songmodel.dart';
 import 'package:neon_player/favorists/favoricon.dart';
 import 'package:neon_player/now_playing/progress_bar.dart';
 import 'package:neon_player/playlist/btmshtplaylists.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:on_audio_room/on_audio_room.dart';
 import 'package:palette_generator/palette_generator.dart';
 import '../tracks_music_list/track_lists.dart';
 
-class NowPlayer extends StatefulWidget {
+class NowPlayer extends StatelessWidget {
   // final PaletteGenerator? palette;
-  const NowPlayer({
+  NowPlayer({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<NowPlayer> createState() => _NowPlayerState();
-}
+  Audio find(List<Audio> source, String fromPath) {
+    return source.firstWhere((element) => element.path == fromPath);
+  }
 
-Audio find(List<Audio> source, String fromPath) {
-  return source.firstWhere((element) => element.path == fromPath);
-}
-
-class _NowPlayerState extends State<NowPlayer>
-    with SingleTickerProviderStateMixin {
   OnAudioQuery audioQuery = OnAudioQuery();
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer.withId("0");
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return assetsAudioPlayer.builderCurrent(
       builder: (context, playing) {
         String songid = playing.audio.audio.metas.id!;
@@ -65,7 +62,7 @@ class _NowPlayerState extends State<NowPlayer>
 
             Color iconColor = snapshot.data == null
                 ? Colors.white60
-                : snapshot.data!.darkVibrantColor == null
+                : snapshot.data!.lightMutedColor == null
                     ? snapshot.data!.dominantColor!.color
                     : snapshot.data!.darkMutedColor!.color;
             // if(iconColor== bgColor){
@@ -105,12 +102,12 @@ class _NowPlayerState extends State<NowPlayer>
                 actions: [
                   IconButton(
                     onPressed: () {
-                      setState(() {});
+                      // setState(() {});
                       playlistShowBottomSheet(context);
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.playlist_add,
-                      color: Color(0xFFE9572F),
+                      color: Colors.grey[700],
                     ),
                   )
                 ],
@@ -118,9 +115,9 @@ class _NowPlayerState extends State<NowPlayer>
               body: Column(
                 children: [
                   Container(
-                    height: 500,
+                    height: size.height * 0.55,
                     color: bgColor,
-                    width: MediaQuery.of(context).size.width,
+                    width: size.width,
                     child: ShaderMask(
                       shaderCallback: (rect) {
                         return const LinearGradient(
@@ -161,7 +158,7 @@ class _NowPlayerState extends State<NowPlayer>
                   ),
                   Container(
                     color: bgColor,
-                    height: 100,
+                    height: size.height * 0.10,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -173,7 +170,7 @@ class _NowPlayerState extends State<NowPlayer>
                               color: textColor,
                               fontWeight: FontWeight.w600),
                         ),
-                        const SizedBox(height: 5),
+                        SizedBox(height: size.height * 0.01),
                         Text(
                           assetsAudioPlayer.getCurrentAudioArtist,
                           style: GoogleFonts.inter(
@@ -203,43 +200,43 @@ class _NowPlayerState extends State<NowPlayer>
                                   : () {},
                               icon: playing.index == 0
                                   ? const Icon(
-                                      Icons.skip_previous_rounded,
+                                      Icons.skip_previous_outlined,
                                       color: Colors.black45,
-                                      size: 35,
+                                      size: 28,
                                     )
-                                  : const Icon(
-                                      CupertinoIcons.backward_end,
-                                      color: Color(0xFFE9572F),
-                                      size: 35,
+                                  : Icon(
+                                      CupertinoIcons.backward_end_fill,
+                                      color: Colors.grey[700],
+                                      size: 28,
                                     ),
                             ),
                           ),
-                          Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                                color: iconColor,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: PlayerBuilder.isPlaying(
-                              player: player,
-                              builder: (context, isPlaying) {
-                                return IconButton(
-                                  icon: Icon(
-                                    isPlaying ? Icons.pause : Icons.play_arrow,
-                                    size: 43,
-                                  ),
-                                  onPressed: () {
-                                    player.playOrPause();
-                                  },
-                                  color: Colors.white,
-                                );
-                              },
+                          CircleAvatar(
+                            backgroundColor: iconColor,
+                            radius: 40,
+                            child: Center(
+                              child: PlayerBuilder.isPlaying(
+                                player: player,
+                                builder: (context, isPlaying) {
+                                  return IconButton(
+                                    icon: Icon(
+                                      isPlaying
+                                          ? Icons.pause
+                                          : Icons.play_arrow,
+                                      size: 30,
+                                    ),
+                                    onPressed: () {
+                                      player.playOrPause();
+                                    },
+                                    color: Colors.white,
+                                  );
+                                },
+                              ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                             child: IconButton(
-                              iconSize: 45,
                               onPressed: playing.index == allsongs.length - 1
                                   ? () {}
                                   : () {
@@ -249,12 +246,12 @@ class _NowPlayerState extends State<NowPlayer>
                                   ? const Icon(
                                       CupertinoIcons.forward_end,
                                       color: Colors.black45,
-                                      size: 35,
+                                      size: 28,
                                     )
-                                  : const Icon(
-                                      CupertinoIcons.forward_end,
-                                      color: Color(0xFFE9572F),
-                                      size: 35,
+                                  : Icon(
+                                      CupertinoIcons.forward_end_fill,
+                                      color: Colors.grey[700],
+                                      size: 28,
                                     ),
                             ),
                           ),
@@ -272,116 +269,60 @@ class _NowPlayerState extends State<NowPlayer>
     );
   }
 
-  StatefulBuilder ShuffleIcon(bool isShuffle) {
-    return StatefulBuilder(
-                          builder: ((BuildContext context,
-                              void Function(void Function()) setState) {
-                            return !isShuffle
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isShuffle = true;
-                                          player.toggleShuffle();
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.shuffle_on_outlined,
-                                        color: Color(0xFFE9572F),
-                                        size: 20,
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        setState(
-                                          () {
-                                            isShuffle = false;
-                                            player.setLoopMode(
-                                                LoopMode.playlist);
-                                          },
-                                        );
-                                      },
-                                      icon: const Icon(
-                                        Icons.shuffle,
-                                        color: Color(0xFFE9572F),
-                                        size: 20,
-                                      ),
-                                    ),
-                                  );
-                          }),
-                        );
-  }
-
-  StatefulBuilder RepeatIcon(bool isRepeate) {
-    return StatefulBuilder(
-      builder: ((context, setState) {
-        return !isRepeate
-            ? Container(
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(50)),
-                child: IconButton(
-                    onPressed: () {
-                      setState(
-                        () {
-                          isRepeate = true;
-                          player.setLoopMode(LoopMode.single);
-                        },
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.repeat,
-                      color: Color(0xFFE9572F),
-                      size: 20,
-                    )),
-              )
-            : Container(
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(50)),
-                child: IconButton(
-                  onPressed: () {
-                    setState(
-                      () {
-                        isRepeate = false;
-                        player.setLoopMode(LoopMode.playlist);
-                      },
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.repeat_one,
-                    color: Color(0xFFE9572F),
-                    size: 20,
-                  ),
-                ),
-              );
-      }),
+  ShuffleIcon(bool isShuffle) {
+    return GetBuilder<MusicController>(
+      init: MusicController(),
+      builder: (controller) {
+        return Container(
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(50)),
+          child: IconButton(
+            onPressed: controller.shuffleControll,
+            icon: Icon(
+              player.isShuffling.value
+                  ? Icons.shuffle_on_outlined
+                  : Icons.shuffle,
+              color: Colors.grey[700],
+              size: 20,
+            ),
+          ),
+        );
+      },
     );
   }
+}
 
-  Future<PaletteGenerator?> generatePalette(String songId) async {
-    Uint8List? imagebyte =
-        await audioQuery.queryArtwork(int.parse(songId), ArtworkType.AUDIO);
-
-    PaletteGenerator? paletteGenerator =
-        await PaletteGenerator.fromImageProvider(MemoryImage(imagebyte!),
-            size: const Size(300, 150), maximumColorCount: 30);
-    return paletteGenerator;
-  }
-
-  Songs databaseSongs(List<Songs> songs, String id) {
-    return songs.firstWhere(
-      (element) => element.songurl.toString().contains(id.toString()),
+RepeatIcon(bool isRepeat) {
+  return GetBuilder<MusicController>(builder: (controller) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.transparent, borderRadius: BorderRadius.circular(50)),
+      child: IconButton(
+        onPressed: controller.repeatControll,
+        icon: Icon(
+          !controller.isRepeat ? Icons.repeat : Icons.repeat_one,
+          color: Colors.grey[700],
+          size: 20,
+        ),
+      ),
     );
-  }
+  });
+}
+
+Future<PaletteGenerator?> generatePalette(String songId) async {
+  Uint8List? imagebyte =
+      await audioQuery.queryArtwork(int.parse(songId), ArtworkType.AUDIO);
+
+  PaletteGenerator? paletteGenerator = await PaletteGenerator.fromImageProvider(
+      MemoryImage(imagebyte!),
+      size: const Size(300, 150),
+      maximumColorCount: 30);
+  return paletteGenerator;
+}
+
+Songs databaseSongs(List<Songs> songs, String id) {
+  return songs.firstWhere(
+    (element) => element.songurl.toString().contains(id.toString()),
+  );
 }

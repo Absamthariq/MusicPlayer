@@ -17,7 +17,7 @@ class DrawerList extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   image: DecorationImage(
-                      image: AssetImage('lib/assets/song_images/logo2.jpg'),
+                      image: AssetImage('lib/assets/song_images/logo2crop.jpg'),
                       fit: BoxFit.cover),
                 ),
               ),

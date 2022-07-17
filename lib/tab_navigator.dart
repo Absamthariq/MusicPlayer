@@ -18,7 +18,7 @@ class TabNavigation extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        bottomSheet: const Miniplayer2(),
+        bottomSheet:  Miniplayer2(),
         backgroundColor: const Color(0xFF181717),
         drawer: const DrawerList(),
         appBar: AppBar(
@@ -56,7 +56,7 @@ class TabNavigation extends StatelessWidget {
             style: GoogleFonts.inter(fontSize: 25, fontWeight: FontWeight.w700),
           ),
         ),
-        body: const TabBarView(
+        body:  TabBarView(
           children: [
             TrackLists(),
             AlbumPage(),

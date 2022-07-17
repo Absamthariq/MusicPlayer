@@ -19,17 +19,19 @@ class AlbumDetailed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      bottomSheet: const Miniplayer2(),
+      bottomSheet: Miniplayer2(),
       body: FutureBuilder<List<SongModel>>(
           future: audioQuery.queryAudiosFrom(AudiosFromType.ALBUM_ID, albumId,
               sortType: SongSortType.TITLE),
           builder: (context, AsyncSnapshot<List<SongModel>> item) {
-            return Column(
+            return ListView(
               children: [
                 Container(
                   color: Colors.amber,
-                  height: 400,
+                  height: size.height * 0.4,
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(0),
@@ -51,7 +53,7 @@ class AlbumDetailed extends StatelessWidget {
                 ),
                 Container(
                   width: double.infinity,
-                  height: 60,
+                height: size.height * 0.06,
                   child: Center(
                       child: Text(
                     albumName,
@@ -64,6 +66,7 @@ class AlbumDetailed extends StatelessWidget {
                   )),
                 ),
                 ListView.builder(
+                    physics: const ClampingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: item.data!.length,
                     itemBuilder: (context, index) {
@@ -86,17 +89,23 @@ class AlbumDetailed extends StatelessWidget {
                       return ListTile(
                         onTap: () async {
                           await player.open(
-                              Playlist(
-                                  audios: albumlistSongs, startIndex: index),
-                              showNotification: true,
-                              loopMode: LoopMode.playlist,
-                              notificationSettings: const NotificationSettings(
-                                  stopEnabled: false));
+                            Playlist(audios: albumlistSongs, startIndex: index),
+                            showNotification: true,
+                            loopMode: LoopMode.playlist,
+                            notificationSettings:
+                                const NotificationSettings(stopEnabled: false),
+                          );
                         },
-                        leading: SizedBox(
-                            width: 45,
-                            height: 45,
-                            child: Center(child: Text('${index + 1}'))),
+                        leading: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Text('${index + 1}'),
+                            ),
+                          ],
+                        ),
                         title: Text(songModel.title),
                         subtitle: Text(songModel.artist ?? 'unknown'),
                       );

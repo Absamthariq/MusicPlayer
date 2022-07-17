@@ -7,18 +7,15 @@ import 'package:neon_player/tracks_music_list/track_lists.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:palette_generator/palette_generator.dart';
 
-class Miniplayer2 extends StatefulWidget {
-  const Miniplayer2({Key? key}) : super(key: key);
+class Miniplayer2 extends StatelessWidget {
+   Miniplayer2({Key? key}) : super(key: key);
 
-  @override
-  State<Miniplayer2> createState() => _Miniplayer2State();
-}
-
+  
 Audio find(List<Audio> source, String fromPath) {
   return source.firstWhere((element) => element.path == fromPath);
 }
 
-class _Miniplayer2State extends State<Miniplayer2> {
+
   PaletteGenerator? paletteGenerator;
   @override
   Widget build(BuildContext context) {
@@ -48,7 +45,7 @@ class _Miniplayer2State extends State<Miniplayer2> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const NowPlayer(),
+                          builder: (context) =>  NowPlayer(),
                         ),
                       );
                     },

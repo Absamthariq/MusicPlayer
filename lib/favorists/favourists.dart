@@ -1,29 +1,27 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neon_player/controller/favoriets_controller.dart';
 import 'package:neon_player/tracks_music_list/track_lists.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_room/details/rooms/favorites/favorites_entity.dart';
 import 'package:on_audio_room/on_audio_room.dart';
 
-class Favourites extends StatefulWidget {
-  const Favourites({Key? key}) : super(key: key);
+class Favourites extends StatelessWidget {
+  Favourites({Key? key}) : super(key: key);
 
-  @override
-  State<Favourites> createState() => _FavouritesState();
-}
-
-class _FavouritesState extends State<Favourites> {
   List<Audio> favSongsList = [];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FutureBuilder<List<FavoritesEntity>>(
+    Get.put(FavoritesController());
+    return Center(child: GetBuilder<FavoritesController>(
+      builder: (controller) {
+        return FutureBuilder<List<FavoritesEntity>>(
           future: audioRoom.queryFavorites(
             limit: 50,
             reverse: true,
-           
           ),
           builder: (context, item) {
             if (item.data == null || item.data!.isEmpty) {
@@ -100,8 +98,10 @@ class _FavouritesState extends State<Favourites> {
                 );
               },
             );
-          }),
-    );
+          },
+        );
+      },
+    ));
   }
 
   RemoveFromfavorites(
@@ -120,12 +120,15 @@ class _FavouritesState extends State<Favourites> {
                 Text('Cancel', style: GoogleFonts.inter(color: Colors.white)),
           ),
           TextButton(
-            onPressed: () async {
-              await audioRoom.deleteFrom(
-                RoomType.FAVORITES,
-                favorites[index].key,
-              );
-              setState(() {});
+            onPressed: () {
+              final controller = Get.find<FavoritesController>();
+              controller.favoreitsSongRemove(
+                  index: index, favorites: favorites);
+              // await audioRoom.deleteFrom(
+              //   RoomType.FAVORITES,
+              //   favorites[index].key,
+              // );
+              // setState(() {});
               Navigator.pop(context, 'OK');
             },
             child: Text(

@@ -19,11 +19,11 @@ class ProgressBarLine extends StatelessWidget {
             player.seek(to);
           },
 
-          timeLabelTextStyle: const TextStyle(color: Color(0xFFE9572F)),
-          baseBarColor: const Color(0xFF65A888),
-          progressBarColor: const Color(0xFF65A888),
+          timeLabelTextStyle:  TextStyle(color: Colors.grey[700],),
+          baseBarColor: Colors.grey[700],
+          progressBarColor: Colors.grey[700],
           // bufferedBarColor: const Color(0xFF32C437),
-          thumbColor: const Color(0xFF65A888),
+          thumbColor: Colors.grey[700],
           timeLabelLocation: TimeLabelLocation.sides,
 
           barHeight: 1.0,

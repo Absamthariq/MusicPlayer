@@ -98,9 +98,12 @@ class _FavoreitsIconState extends State<FavoreitsIcon> {
                 }
                 setState(() {});
               },
-              icon: Icon(
+              icon:isFav? const Icon(
+                Icons.favorite_rounded,
+                color:  Colors.red ,
+              ): const Icon(
                 Icons.favorite_border_outlined,
-                color: isFav ? Colors.red : Colors.grey,
+                color:  Colors.grey,
               ));
         },
       );
