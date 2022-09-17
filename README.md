@@ -4,13 +4,36 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A new Flutter project.
 
-A few resources to get you started if this is your first Flutter project:
+My first Main project built using Flutter named NeoX player. It's an offline music player having different features.The difficulties I faced as a self taught #developer helped me to find better solutions for my problems.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Special Thanks To Nikhil Kilivayil, Brototype Malayalam, Gokuldas V R , Harish Bhuvan , Sreejith Surendran , Josna Maria Babu and Anagha S Anand.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+App Link : https://lnkd.in/ddaUCxJ7
+
+
+Features:-
+
+List all songs from Local Store
+Fetch all song in internal storage using on_audio_query
+Search (deligates)
+Add Song into Playlist and Favourites
+Dynamic UI(change UI colors depending upon artwork given from the song). 
+Technology Used:-
+
+Flutter
+Dart
+Hive
+Getx
+
+Packages:-
+
+assets_audio_player
+on_audio_query
+hive_flutter
+build_runner
+hive_generator
+Palette Generator
+
+regard, Absam.
